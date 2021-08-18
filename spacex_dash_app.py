@@ -62,13 +62,10 @@ app.layout = html.Div(children=[html.H1('SpaceX Launch Records Dashboard',
                [Input(component_id='site-dropdown', component_property='value')],
             )
 def gen_chart(value):
+    fig = px.pie(spacex_df, values='Flight Number', names='Launch Site')
     if value != 'ALL':
 	    pie_data = (spacex_df['Launch Site'] == value)
 	    fig = px.pie(spacex_df.loc[pie_data, :], values = 'Flight Number', names = 'class')
-    elif value == 'ALL':
-	    fig = px.pie(spacex_df, values='Flight Number', names='Launch Site')
-    else:
-        fig = px.pie(spacex_df, values='Flight Number', names='Launch Site')
     return fig
                 
               
